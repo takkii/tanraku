@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Tanraku
-  VERSION = '0.1.3'.freeze
+  VERSION = '1.0.0'
 end
 
 __END__
