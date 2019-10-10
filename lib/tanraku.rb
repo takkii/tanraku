@@ -1,12 +1,11 @@
-# frozen_string_literal: true
+﻿# frozen_string_literal: true
 
-# MyError Class
 class MyError < StandardError
   def volt
     raise MyError
-  rescue StandardError => ex
-    puts "#{ex.class} : #{ex.message}"
-    puts ex.backtrace.join('          \n')
+  rescue StandardError => e
+    puts "#{e.class} : #{e.message}"
+    puts e.backtrace.join('          \n')
   ensure
     puts '例外メッセージは以上です！'
   end
@@ -15,8 +14,8 @@ class MyError < StandardError
     raise MyError, 'プロジェクト固有の例外です！'
   end
 
-rescue MyError => ed
-  ed.backtrace.join('        \n')
+rescue MyError => e
+  e.backtrace.join('        \n')
 end
 
 # MyError = Class.new(StandardError)
@@ -24,16 +23,15 @@ MyError1 = Class.new(MyError)
 MyError2 = Class.new(MyError)
 MyError3 = Class.new(MyError)
 
-# YouError Class
 class YouError < RuntimeError
   def anpea
     raise YouError
-  rescue StandardError => et
-    puts "#{et.class} : #{et.message}"
-    puts et.backtrace.join('          \n')
+  rescue StandardError => e
+    puts "#{e.class} : #{e.message}"
+    puts e.backtrace.join('          \n')
   ensure
     puts '例外メッセージは以上です！'
-  end
+end
 end
 
 # YouError = Class.new(ScriptError)
@@ -41,52 +39,48 @@ YouError1 = Class.new(YouError)
 YouError2 = Class.new(YouError)
 YouError3 = Class.new(YouError)
 
-# WhoError Class
 class WhoError < RuntimeError
   def teikou
     raise WhoError
-  rescue StandardError => ey
-    puts "#{ey.class} : #{ey.message}"
-    puts ey.backtrace.join('          \n')
+  rescue StandardError => e
+    puts "#{e.class} : #{e.message}"
+    puts e.backtrace.join('          \n')
   ensure
     puts '例外メッセージは以上です！'
-  end
+end
 end
 
 # WhoError = Class.new(SignalException)
 WhoError1 = Class.new(WhoError)
 
-# CatError Class
 class CatError < RuntimeError
   def kasai
     raise CatError
-  rescue StandardError => ez
-    puts "#{ez.class} : #{ez.message}"
-    puts ez.backtrace.join('          \n')
+  rescue StandardError => e
+    puts "#{e.class} : #{e.message}"
+    puts e.backtrace.join('          \n')
   ensure
     puts '例外メッセージは以上です！'
-  end
+end
 end
 
 # CatError = Class.new(NoMemoryError)
 CatError1 = Class.new(CatError)
 
-# DogError Class
 class DogError < RuntimeError
   def tebunan
     raise DogError
-  rescue StandardError => es
-    puts "#{es.class} : #{es.message}"
-    puts es.backtrace.join('          \n')
+  rescue StandardError => e
+    puts "#{e.class} : #{e.message}"
+    puts e.backtrace.join('          \n')
   ensure
     puts '例外メッセージは以上です！'
-  end
+end
 end
 
 # DogError = Class.new(SystemExit)
 DogError1 = Class.new(DogError)
 
-# Object Class Addtion.
 class Object
   def tanraku
     m = Mutex.new
@@ -94,8 +88,8 @@ class Object
     begin
       m.lock
       raise Object
-    rescue StandardError => ee
-      puts ee.backtrace
+    rescue StandardError => e
+      puts e.backtrace
       print 'Tanraku Method Exception '
     ensure
       puts '--> next class search...'
@@ -103,10 +97,25 @@ class Object
     end
   end
 
+  def tanraku_exit
+    m2 = Mutex.new
+
+    begin
+      m2.lock
+      raise Object
+    rescue StandardError => ef
+      puts ef.backtrace
+    ensure
+      puts '--> Tanraku_Exit Method Exception'
+      m2.unlock
+      exit!
+    end
+  end
+
   def execute_process
     raise Object
-  rescue StandardError => ea
-    puts "#{ea.class} : #{ea.message}"
+  rescue StandardError => e
+    puts "#{e.class} : #{e.message}"
   ensure
     puts ea.backtrace
   end
@@ -117,10 +126,10 @@ class Object
       exee = Exception.new('User Exception is raise message.')
       m2.puts exee.message
       raise
-    rescue StandardError => eo
+    rescue StandardError => e
       File.open('log/logs.txt', 'a:utf-8') do |m|
-        m.puts eo.backtrace.to_s
-        m.puts "#{eo.class} : #{eo.message}"
+        m.puts e.backtrace.to_s
+        m.puts "#{e.class} : #{e.message}"
       end
     ensure
       puts 'log write (log/logs.txt).'
