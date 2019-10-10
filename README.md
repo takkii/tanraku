@@ -13,6 +13,7 @@ end
 
 Sample.new.ruby.tanraku
 Sample.new.ruby.tanraku_log
+Sample.new.ruby.tanraku_exit
 ```
 
 ## tanraku methods.
@@ -39,4 +40,12 @@ log write (log/logs.txt)
 
 ```text
 As an original function, raise an exception and displays backtrace.
+```
+
+## [NEW!] tanraku_exit methods.
+
+> --> Tanraku_Exit Method Exception
+
+```markdown
+Raises an exception and terminates processing.
 ```
