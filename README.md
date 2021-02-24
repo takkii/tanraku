@@ -42,7 +42,7 @@ log write (log/logs.txt)
 As an original function, raise an exception and displays backtrace.
 ```
 
-## [NEW!] tanraku_exit methods.
+### tanraku_exit methods.
 
 > --> Tanraku_Exit Method Exception
 
